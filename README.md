@@ -24,11 +24,10 @@ A React Native application designed to improve fine motor skills, hand-eye coord
 
 ## Screenshots
 
-### Main Interface
-![Main Interface](src/assets/ui.png)
-
-### Game Selection
-![Game Selection](src/assets/ui2.png)
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <img src="src/assets/ui.png" alt="Main Interface" style="width: 45%; height: auto;" />
+  <img src="src/assets/ui2.png" alt="Game Selection" style="width: 45%; height: auto;" />
+</div>
 
 ## Getting Started
 
