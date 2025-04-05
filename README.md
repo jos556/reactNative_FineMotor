@@ -25,10 +25,10 @@ A React Native application designed to improve fine motor skills, hand-eye coord
 ## Screenshots
 
 ### Main Interface
-![Main Interface](../assets/ui.png)
+![Main Interface](src/assets/ui.png)
 
 ### Game Selection
-![Game Selection](../assets/ui2.png)
+![Game Selection](src/assets/ui2.png)
 
 ## Getting Started
 
