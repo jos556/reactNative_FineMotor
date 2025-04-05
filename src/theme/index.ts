@@ -1,15 +1,15 @@
 import { DefaultTheme } from 'styled-components/native';
 
-const theme: DefaultTheme = {
+export const theme: DefaultTheme = {
   colors: {
-    primary: '#4A90E2',
-    secondary: '#50E3C2',
+    primary: '#6200EE',
+    secondary: '#03DAC6',
     background: '#FFFFFF',
     surface: '#F5F5F5',
-    text: '#333333',
+    text: '#000000',
     textSecondary: '#666666',
     success: '#4CAF50',
-    error: '#F44336',
+    error: '#B00020',
     warning: '#FFC107',
   },
   typography: {
@@ -23,11 +23,9 @@ const theme: DefaultTheme = {
     },
     body: {
       fontSize: 16,
-      fontWeight: 'normal',
     },
     caption: {
-      fontSize: 14,
-      fontWeight: 'normal',
+      fontSize: 12,
     },
   },
   spacing: {
