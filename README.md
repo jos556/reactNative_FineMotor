@@ -5,18 +5,21 @@ A React Native application designed to improve fine motor skills, hand-eye coord
 ## Features
 
 ### 1. Tap Master
+
 - Fast-paced reaction game
 - Improves hand-eye coordination
 - Develops finger dexterity
 - Enhances proprioception
 
 ### 2. Drawing Challenge
+
 - Precision drawing exercises
 - Improves hand stability
 - Develops spatial awareness
 - Enhances visual-motor integration
 
 ### 3. Rhythm Master
+
 - Rhythm-based tapping game
 - Improves timing and coordination
 - Develops bilateral coordination
@@ -25,13 +28,18 @@ A React Native application designed to improve fine motor skills, hand-eye coord
 ## Screenshots
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <img src="src/assets/ui.png" alt="Main Interface" style="width: 45%; height: auto;" />
+  <img src="src/assets/ui1.png" alt="Main Interface" style="width: 45%; height: auto;" />
+  <img src="src/assets/ui.png" alt="Game Selection" style="width: 45%; height: auto;" />
+</div>
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <img src="src/assets/ui3.png" alt="Main Interface" style="width: 45%; height: auto;" />
   <img src="src/assets/ui2.png" alt="Game Selection" style="width: 45%; height: auto;" />
 </div>
 
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js (v14 or later)
 - npm or yarn
 - React Native CLI
@@ -41,12 +49,14 @@ A React Native application designed to improve fine motor skills, hand-eye coord
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone [repository-url]
 cd ReactNativeApp
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 # or
@@ -54,11 +64,13 @@ yarn install
 ```
 
 3. Start the Metro bundler:
+
 ```bash
 npx react-native start
 ```
 
 4. Run the application:
+
 ```bash
 # For Android
 npx react-native run-android
@@ -70,6 +82,7 @@ npx react-native run-ios
 ## Development
 
 ### Project Structure
+
 ```
 src/
   ├── assets/         # Images and other static assets
@@ -81,12 +94,14 @@ src/
 ```
 
 ### Key Technologies
+
 - React Native
 - TypeScript
 - Styled Components
 - React Navigation
 
 ## Contributing
+
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
@@ -94,4 +109,5 @@ src/
 5. Open a Pull Request
 
 ## License
+
 This project is licensed under the MIT License - see the LICENSE file for details.
