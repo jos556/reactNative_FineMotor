@@ -4,26 +4,38 @@ A React Native application designed to improve fine motor skills, hand-eye coord
 
 ## Features
 
-### 1. Tap Master
+### 1. Multi-language Support
+- English
+- Traditional Chinese
+- Simplified Chinese
+- Spanish
+- Dynamic language switching
+- Persistent language preferences
 
-- Fast-paced reaction game
-- Improves hand-eye coordination
-- Develops finger dexterity
-- Enhances proprioception
+### 2. Training Modules
+- Click Accuracy Training
+- Track Following Exercises
+- Handwriting Practice
+- Multiple difficulty levels
+- Progress tracking
 
-### 2. Drawing Challenge
+### 3. Games
+- Interactive games for skill development
+- Real-time feedback
+- Performance metrics
+- Achievement system
 
-- Precision drawing exercises
-- Improves hand stability
-- Develops spatial awareness
-- Enhances visual-motor integration
+### 4. Progress Tracking
+- Detailed performance analytics
+- Visual progress charts
+- Achievement tracking
+- Training history
 
-### 3. Rhythm Master
-
-- Rhythm-based tapping game
-- Improves timing and coordination
-- Develops bilateral coordination
-- Enhances auditory-motor integration
+### 5. User Profile
+- Personal information management
+- Language preferences
+- Theme settings
+- Notification preferences
 
 ## Screenshots
 
@@ -40,7 +52,7 @@ A React Native application designed to improve fine motor skills, hand-eye coord
 
 ### Prerequisites
 
-- Node.js (v14 or later)
+- Node.js (v18 or later)
 - npm or yarn
 - React Native CLI
 - Android Studio (for Android development)
@@ -87,25 +99,65 @@ npx react-native run-ios
 src/
   ├── assets/         # Images and other static assets
   ├── components/     # Reusable UI components
+  │   ├── TabBar.tsx  # Custom bottom tab navigation
+  │   ├── LanguageSelector.tsx  # Language switching component
+  │   └── ...
+  ├── contexts/       # React Context providers
+  │   ├── LanguageContext.tsx  # Language management
+  │   └── ...
   ├── screens/        # Screen components
-  ├── navigation/     # Navigation configuration
+  │   ├── HomeScreen.tsx
+  │   ├── TrainingScreen.tsx
+  │   ├── GamesScreen.tsx
+  │   ├── ProgressScreen.tsx
+  │   └── ProfileScreen.tsx
+  ├── i18n/          # Internationalization
+  │   ├── locales/   # Translation files
+  │   └── index.ts   # i18n configuration
   ├── theme/         # Theme configuration
+  │   ├── colors.ts
+  │   ├── typography.ts
+  │   └── index.ts
   └── utils/         # Utility functions
 ```
 
 ### Key Technologies
 
-- React Native
-- TypeScript
-- Styled Components
-- React Navigation
+- React Native 0.78.2
+- TypeScript 5.0.4
+- React 19.0.0
+- Styled Components 6.1.17
+- React Navigation 7.x
+- i18next 24.2.3
+- React Native Reanimated 3.17.2
+- React Native Gesture Handler 2.25.0
+
+### Dependencies
+
+The project uses the following major dependencies:
+
+```json
+{
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^2.1.2",
+    "@react-navigation/bottom-tabs": "^7.3.8",
+    "@react-navigation/native": "^7.1.4",
+    "i18next": "^24.2.3",
+    "react-i18next": "^15.4.1",
+    "react-native": "0.78.2",
+    "react-native-gesture-handler": "^2.25.0",
+    "react-native-reanimated": "^3.17.2",
+    "styled-components": "^6.1.17"
+  }
+}
+```
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
 ## License
