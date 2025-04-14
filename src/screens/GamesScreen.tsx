@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
+import { useTranslation } from 'react-i18next';
 
 const Container = styled.View`
   flex: 1;
@@ -74,27 +75,28 @@ const StatLabel = styled.Text`
 `;
 
 const GamesScreen: React.FC = () => {
+  const { t } = useTranslation();
   const games = [
     {
       id: 1,
-      title: '點點大師',
-      description: '在限定時間內點擊出現的目標，提升反應速度和準確度',
+      title: t('games.categories.speed'),
+      description: t('games.description'),
       players: 2345,
       highScore: 9876,
       level: 5,
     },
     {
       id: 2,
-      title: '繪畫挑戰',
-      description: '跟隨指示完成各種繪畫任務，培養手部穩定性',
+      title: t('games.categories.accuracy'),
+      description: t('games.description'),
       players: 1987,
       highScore: 8765,
       level: 3,
     },
     {
       id: 3,
-      title: '節奏達人',
-      description: '配合音樂節奏完成動作，訓練手指靈活度',
+      title: t('games.categories.coordination'),
+      description: t('games.description'),
       players: 3456,
       highScore: 12345,
       level: 4,
@@ -103,13 +105,13 @@ const GamesScreen: React.FC = () => {
 
   return (
     <Container>
+      <Header>
+        <Title>{t('games.title')}</Title>
+      </Header>
       <ScrollView>
-        <Header>
-          <Title>遊戲列表</Title>
-        </Header>
         <GameList>
           {games.map(game => (
-            <GameCard key={game.id} onPress={() => {}}>
+            <GameCard key={game.id}>
               <GameImage />
               <GameContent>
                 <GameTitle>{game.title}</GameTitle>
@@ -117,15 +119,15 @@ const GamesScreen: React.FC = () => {
                 <GameStats>
                   <StatContainer>
                     <StatValue>{game.players}</StatValue>
-                    <StatLabel>玩家數</StatLabel>
+                    <StatLabel>Players</StatLabel>
                   </StatContainer>
                   <StatContainer>
                     <StatValue>{game.highScore}</StatValue>
-                    <StatLabel>最高分</StatLabel>
+                    <StatLabel>High Score</StatLabel>
                   </StatContainer>
                   <StatContainer>
                     <StatValue>{game.level}</StatValue>
-                    <StatLabel>難度等級</StatLabel>
+                    <StatLabel>Level</StatLabel>
                   </StatContainer>
                 </GameStats>
               </GameContent>

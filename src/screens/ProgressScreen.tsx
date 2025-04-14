@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
+import { useTranslation } from 'react-i18next';
 
 const Container = styled.View`
   flex: 1;
@@ -90,6 +91,12 @@ const ActivityIcon = styled.View`
   border-radius: ${props => props.theme.borderRadius.sm}px;
   background-color: ${props => props.theme.colors.primary};
   margin-right: ${props => props.theme.spacing.md}px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ActivityIconText = styled.Text`
+  font-size: 20px;
 `;
 
 const ActivityContent = styled.View`
@@ -99,76 +106,54 @@ const ActivityContent = styled.View`
 const ActivityTitle = styled.Text`
   color: ${props => props.theme.colors.text};
   font-size: ${props => props.theme.typography.body.fontSize}px;
-  font-weight: ${props => props.theme.typography.h2.fontWeight};
-  margin-bottom: ${props => props.theme.spacing.xs}px;
-`;
-
-const ActivityMeta = styled.Text`
-  color: ${props => props.theme.colors.textSecondary};
-  font-size: ${props => props.theme.typography.caption.fontSize}px;
+  font-weight: 500;
 `;
 
 const ProgressScreen: React.FC = () => {
+  const { t } = useTranslation();
   const stats = [
-    { label: '總訓練時間', value: '12.5小時' },
-    { label: '完成練習', value: '48次' },
-    { label: '獲得成就', value: '15個' },
-    { label: '當前等級', value: 'Lv.5' },
+    { label: t('progress.stats.accuracy'), value: '85%', progress: '85%' },
+    { label: t('progress.stats.speed'), value: '72%', progress: '72%' },
+    { label: t('progress.stats.consistency'), value: '91%', progress: '91%' },
   ];
 
   const activities = [
-    {
-      id: 1,
-      title: '完成點擊精度訓練',
-      meta: '今天 14:30 • 得分：95',
-    },
-    {
-      id: 2,
-      title: '完成軌跡追蹤練習',
-      meta: '今天 11:20 • 得分：88',
-    },
-    {
-      id: 3,
-      title: '完成手寫練習',
-      meta: '昨天 16:45 • 得分：92',
-    },
+    { title: t('progress.charts.daily'), icon: '📊' },
+    { title: t('progress.charts.weekly'), icon: '📈' },
+    { title: t('progress.charts.monthly'), icon: '📉' },
   ];
 
   return (
     <Container>
+      <Header>
+        <Title>{t('progress.title')}</Title>
+      </Header>
       <ScrollView>
-        <Header>
-          <Title>訓練進度</Title>
-        </Header>
-
         <Section>
-          <SectionTitle>本週統計</SectionTitle>
+          <SectionTitle>{t('progress.description')}</SectionTitle>
           <StatGrid>
             {stats.map((stat, index) => (
               <StatCard key={index}>
                 <StatValue>{stat.value}</StatValue>
                 <StatLabel>{stat.label}</StatLabel>
+                <ProgressBar>
+                  <ProgressFill width={stat.progress} />
+                </ProgressBar>
               </StatCard>
             ))}
           </StatGrid>
         </Section>
 
         <Section>
-          <SectionTitle>等級進度</SectionTitle>
-          <ProgressBar>
-            <ProgressFill width="75%" />
-          </ProgressBar>
-        </Section>
-
-        <Section>
-          <SectionTitle>最近活動</SectionTitle>
+          <SectionTitle>{t('progress.charts.title')}</SectionTitle>
           <ActivityList>
-            {activities.map(activity => (
-              <ActivityItem key={activity.id}>
-                <ActivityIcon />
+            {activities.map((activity, index) => (
+              <ActivityItem key={index}>
+                <ActivityIcon>
+                  <ActivityIconText>{activity.icon}</ActivityIconText>
+                </ActivityIcon>
                 <ActivityContent>
                   <ActivityTitle>{activity.title}</ActivityTitle>
-                  <ActivityMeta>{activity.meta}</ActivityMeta>
                 </ActivityContent>
               </ActivityItem>
             ))}

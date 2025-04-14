@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Image, Animated } from 'react-native';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import JiggleView from '../components/JiggleView';
 
 const Container = styled.View`
@@ -28,6 +29,7 @@ const Subtitle = styled.Text`
 
 const SplashScreen: React.FC = () => {
   const navigation = useNavigation();
+  const { t } = useTranslation();
   const textPosition = React.useRef(new Animated.Value(-100)).current;
   const textOpacity = React.useRef(new Animated.Value(0)).current;
 
@@ -80,7 +82,7 @@ const SplashScreen: React.FC = () => {
           opacity: textOpacity,
         }}
       >
-        <Subtitle>Develop Motion</Subtitle>
+        <Subtitle>{t('app.splash.subtitle')}</Subtitle>
       </TextContainer>
     </Container>
   );

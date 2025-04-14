@@ -1,7 +1,9 @@
-import React from 'react';
-import { View, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, TouchableOpacity, Image, ImageStyle } from 'react-native';
 import styled from 'styled-components/native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const TabBarContainer = styled.View`
   flex-direction: row;
@@ -17,15 +19,12 @@ const TabItem = styled.TouchableOpacity`
   align-items: center;
 `;
 
-interface TabIconProps {
-  isActive: boolean;
-}
-
-const TabIcon = styled(Image)<TabIconProps>`
+const TabIconContainer = styled.View`
   width: 24px;
   height: 24px;
   margin-bottom: 4px;
-  tint-color: ${props => props.isActive ? props.theme.colors.primary : props.theme.colors.textSecondary};
+  justify-content: center;
+  align-items: center;
 `;
 
 const TabText = styled.Text<{ isActive: boolean }>`
@@ -33,28 +32,63 @@ const TabText = styled.Text<{ isActive: boolean }>`
   color: ${props => props.isActive ? props.theme.colors.primary : props.theme.colors.textSecondary};
 `;
 
-type IconKey = 'home' | 'training' | 'games' | 'progress' | 'profile';
-
 // 預先導入所有圖標
-const icons: Record<IconKey, any> = {
+const icons = {
   home: require('../assets/home.png'),
-  training: require('../assets/triaining.png'),
+  training: require('../assets/training.png'),
   games: require('../assets/games.png'),
   progress: require('../assets/progress.png'),
   profile: require('../assets/profile.png'),
 };
 
 const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation }) => {
+  const { t, i18n } = useTranslation();
+  const { currentLanguage } = useLanguage();
+  const [labels, setLabels] = useState<Record<string, string>>({});
+
+  console.log('TabBar rendering with language:', currentLanguage);
+
+  // 更新標籤
+  const updateLabels = () => {
+    console.log('Updating tab labels for language:', currentLanguage);
+    const newLabels: Record<string, string> = {};
+    state.routes.forEach(route => {
+      const label = t(`tabs.${route.name.toLowerCase()}`);
+      console.log(`Tab ${route.name} label:`, label);
+      newLabels[route.name] = label;
+    });
+    setLabels(newLabels);
+  };
+
+  // 初始化和監聽語言變化
+  useEffect(() => {
+    console.log('TabBar mounted with language:', currentLanguage);
+    updateLabels();
+
+    const handleLanguageChange = () => {
+      console.log('Language changed in TabBar:', i18n.language);
+      updateLabels();
+    };
+
+    i18n.on('languageChanged', handleLanguageChange);
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange);
+    };
+  }, [i18n, currentLanguage, state.routes]);
+
+  const getIconSource = (routeName: string) => {
+    const iconKey = routeName.toLowerCase();
+    return icons[iconKey as keyof typeof icons] || null;
+  };
+
   return (
     <TabBarContainer>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const isFocused = state.index === index;
-        const label = typeof options.tabBarLabel === 'string' 
-          ? options.tabBarLabel 
-          : typeof options.title === 'string' 
-            ? options.title 
-            : route.name;
+        const label = labels[route.name] || t(`tabs.${route.name.toLowerCase()}`);
+
+        console.log(`Rendering tab ${route.name} with label:`, label);
 
         const onPress = () => {
           const event = navigation.emit({
@@ -75,21 +109,12 @@ const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation })
           });
         };
 
-        const getIconSource = () => {
-          const iconKey = route.name.toLowerCase() as IconKey;
-          console.log('Looking for icon:', iconKey);
-          console.log('Available icons:', Object.keys(icons));
-          
-          if (icons[iconKey]) {
-            console.log('Found icon for:', iconKey);
-            return icons[iconKey];
-          }
-          
-          console.warn(`No icon found for route: ${route.name}`);
-          return null;
+        const iconSource = getIconSource(route.name);
+        const iconStyle: ImageStyle = {
+          width: 24,
+          height: 24,
+          tintColor: isFocused ? '#007AFF' : '#8E8E93',
         };
-
-        const iconSource = getIconSource();
 
         return (
           <TabItem
@@ -100,12 +125,15 @@ const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation })
             onPress={onPress}
             onLongPress={onLongPress}
           >
-            {iconSource && (
-              <TabIcon
-                source={iconSource}
-                isActive={isFocused}
-              />
-            )}
+            <TabIconContainer>
+              {iconSource && (
+                <Image
+                  source={iconSource}
+                  style={iconStyle}
+                  resizeMode="contain"
+                />
+              )}
+            </TabIconContainer>
             <TabText isActive={isFocused}>{label}</TabText>
           </TabItem>
         );

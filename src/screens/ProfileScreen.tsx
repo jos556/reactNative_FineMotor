@@ -1,6 +1,8 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from '../components/LanguageSelector';
 
 const Container = styled.View`
   flex: 1;
@@ -111,6 +113,8 @@ const AchievementDate = styled.Text`
 `;
 
 const ProfileScreen: React.FC = () => {
+  const { t } = useTranslation();
+
   const menuItems = [
     { icon: '⚙️', text: '個人設定', value: '' },
     { icon: '🎯', text: '訓練目標', value: '每週3次' },
@@ -144,15 +148,14 @@ const ProfileScreen: React.FC = () => {
 
   return (
     <Container>
+      <Header>
+        <Avatar />
+        <UserName>John Doe</UserName>
+        <UserEmail>john.doe@example.com</UserEmail>
+      </Header>
       <ScrollView>
-        <Header>
-          <Avatar />
-          <UserName>王小明</UserName>
-          <UserEmail>user@example.com</UserEmail>
-        </Header>
-
         <Section>
-          <SectionTitle>設定</SectionTitle>
+          <SectionTitle>{t('profile.settings')}</SectionTitle>
           {menuItems.map((item, index) => (
             <MenuItem key={index} onPress={() => {}}>
               <MenuIcon />
@@ -161,7 +164,10 @@ const ProfileScreen: React.FC = () => {
             </MenuItem>
           ))}
         </Section>
-
+        <Section>
+          <SectionTitle>{t('profile.language')}</SectionTitle>
+          <LanguageSelector />
+        </Section>
         <Section>
           <SectionTitle>成就</SectionTitle>
           <AchievementGrid>

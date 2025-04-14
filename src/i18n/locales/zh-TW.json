@@ -1,0 +1,77 @@
+{
+  "app": {
+    "name": "Develop Motion",
+    "splash": {
+      "subtitle": "精細動作控制訓練"
+    }
+  },
+  "home": {
+    "title": "歡迎使用精細動作控制訓練應用",
+    "description": "這是一個幫助您改善精細動作控制能力的應用程式。您可以通過各種遊戲和訓練練習來提升手部協調能力。"
+  },
+  "training": {
+    "title": "訓練",
+    "exercises": {
+      "clickAccuracy": {
+        "title": "點擊準確度",
+        "description": "提高手指點擊的準確性"
+      },
+      "trackFollowing": {
+        "title": "軌跡跟隨",
+        "description": "練習平滑的手指移動"
+      },
+      "handwriting": {
+        "title": "書寫練習",
+        "description": "提高書寫能力"
+      }
+    },
+    "difficulty": {
+      "easy": "簡單",
+      "medium": "中等",
+      "hard": "困難"
+    }
+  },
+  "games": {
+    "title": "遊戲",
+    "description": "有趣且引人入勝的遊戲，幫助提升您的動作技能",
+    "categories": {
+      "speed": "速度遊戲",
+      "accuracy": "準確度遊戲",
+      "coordination": "協調性遊戲"
+    }
+  },
+  "progress": {
+    "title": "進度",
+    "description": "追蹤您的進步歷程",
+    "stats": {
+      "accuracy": "準確度",
+      "speed": "速度",
+      "consistency": "穩定性"
+    },
+    "charts": {
+      "daily": "每日進度",
+      "weekly": "每週進度",
+      "monthly": "每月進度"
+    }
+  },
+  "profile": {
+    "title": "個人資料",
+    "settings": "設定",
+    "notifications": "通知",
+    "theme": "主題",
+    "language": "語言"
+  },
+  "languages": {
+    "english": "英文",
+    "traditionalChinese": "繁體中文",
+    "simplifiedChinese": "簡體中文",
+    "spanish": "西班牙文"
+  },
+  "tabs": {
+    "home": "首頁",
+    "training": "訓練",
+    "games": "遊戲",
+    "progress": "進度",
+    "profile": "個人資料"
+  }
+} 

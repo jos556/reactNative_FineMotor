@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
+import { useTranslation } from 'react-i18next';
 import JiggleView from '../components/JiggleView';
 
 const Container = styled.View`
@@ -36,17 +37,15 @@ const IconContainer = styled.View`
 `;
 
 const HomeScreen: React.FC = () => {
+  const { t } = useTranslation();
   const [isJiggling, setIsJiggling] = useState(true);
 
   const icons = Array(6).fill(0); // Create 6 demo icons
 
   return (
     <Container>
-      <Title>Welcome to Fine Motor Control Training App</Title>
-      <Content>
-        This is an application designed to help you improve your fine motor control skills.
-        You can enhance your hand coordination through various games and training exercises.
-      </Content>
+      <Title>{t('home.title')}</Title>
+      <Content>{t('home.description')}</Content>
       
       <IconGrid>
         {icons.map((_, index) => (

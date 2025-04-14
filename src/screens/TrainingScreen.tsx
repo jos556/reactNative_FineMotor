@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
+import { useTranslation } from 'react-i18next';
 
 const Container = styled.View`
   flex: 1;
@@ -79,23 +80,25 @@ const DifficultyText = styled.Text`
 `;
 
 const TrainingScreen: React.FC = () => {
+  const { t } = useTranslation();
+  
   const exercises = [
     {
       id: 1,
-      title: '點擊精度',
-      description: '提升手指點擊的準確性',
+      title: t('training.exercises.clickAccuracy.title'),
+      description: t('training.exercises.clickAccuracy.description'),
       difficulty: 'easy' as const,
     },
     {
       id: 2,
-      title: '軌跡追蹤',
-      description: '練習手指的平穩移動',
+      title: t('training.exercises.trackFollowing.title'),
+      description: t('training.exercises.trackFollowing.description'),
       difficulty: 'medium' as const,
     },
     {
       id: 3,
-      title: '手寫練習',
-      description: '提升書寫能力',
+      title: t('training.exercises.handwriting.title'),
+      description: t('training.exercises.handwriting.description'),
       difficulty: 'medium' as const,
     },
     {
@@ -122,18 +125,17 @@ const TrainingScreen: React.FC = () => {
     <Container>
       <ScrollView>
         <Header>
-          <Title>訓練項目</Title>
+          <Title>{t('training.title')}</Title>
         </Header>
         <Grid>
-          {exercises.map(exercise => (
-            <ExerciseCard key={exercise.id} onPress={() => {}}>
+          {exercises.map((exercise) => (
+            <ExerciseCard key={exercise.id}>
               <ExerciseIcon />
               <ExerciseTitle>{exercise.title}</ExerciseTitle>
               <ExerciseDescription>{exercise.description}</ExerciseDescription>
               <DifficultyBadge level={exercise.difficulty}>
                 <DifficultyText>
-                  {exercise.difficulty === 'easy' ? '簡單' :
-                   exercise.difficulty === 'medium' ? '中等' : '困難'}
+                  {t(`training.difficulty.${exercise.difficulty}`)}
                 </DifficultyText>
               </DifficultyBadge>
             </ExerciseCard>

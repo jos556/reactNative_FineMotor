@@ -1,0 +1,77 @@
+{
+  "app": {
+    "name": "Develop Motion",
+    "splash": {
+      "subtitle": "Fine Motor Control Training"
+    }
+  },
+  "home": {
+    "title": "Welcome to Fine Motor Control Training App",
+    "description": "This is an application designed to help you improve your fine motor control skills. You can enhance your hand coordination through various games and training exercises."
+  },
+  "training": {
+    "title": "Training",
+    "exercises": {
+      "clickAccuracy": {
+        "title": "Click Accuracy",
+        "description": "Improve finger tapping accuracy"
+      },
+      "trackFollowing": {
+        "title": "Track Following",
+        "description": "Practice smooth finger movement"
+      },
+      "handwriting": {
+        "title": "Handwriting",
+        "description": "Improve writing skills"
+      }
+    },
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    }
+  },
+  "games": {
+    "title": "Games",
+    "description": "Fun and engaging games to improve your motor skills",
+    "categories": {
+      "speed": "Speed Games",
+      "accuracy": "Accuracy Games",
+      "coordination": "Coordination Games"
+    }
+  },
+  "progress": {
+    "title": "Progress",
+    "description": "Track your improvement over time",
+    "stats": {
+      "accuracy": "Accuracy",
+      "speed": "Speed",
+      "consistency": "Consistency"
+    },
+    "charts": {
+      "daily": "Daily Progress",
+      "weekly": "Weekly Progress",
+      "monthly": "Monthly Progress"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "settings": "Settings",
+    "notifications": "Notifications",
+    "theme": "Theme",
+    "language": "Language"
+  },
+  "languages": {
+    "english": "English",
+    "traditionalChinese": "Traditional Chinese",
+    "simplifiedChinese": "Simplified Chinese",
+    "spanish": "Spanish"
+  },
+  "tabs": {
+    "home": "Home",
+    "training": "Training",
+    "games": "Games",
+    "progress": "Progress",
+    "profile": "Profile"
+  }
+} 

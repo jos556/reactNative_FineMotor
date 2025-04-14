@@ -1,0 +1,77 @@
+{
+  "app": {
+    "name": "Develop Motion",
+    "splash": {
+      "subtitle": "Entrenamiento de Control Motor Fino"
+    }
+  },
+  "home": {
+    "title": "Bienvenido a la Aplicación de Entrenamiento de Control Motor Fino",
+    "description": "Esta es una aplicación que te ayuda a mejorar tus habilidades de control motor fino. Puedes mejorar tu coordinación manual a través de varios juegos y ejercicios de entrenamiento."
+  },
+  "training": {
+    "title": "Entrenamiento",
+    "exercises": {
+      "clickAccuracy": {
+        "title": "Precisión de Clic",
+        "description": "Mejora la precisión de tus toques con los dedos"
+      },
+      "trackFollowing": {
+        "title": "Seguimiento de Trayectoria",
+        "description": "Practica movimientos suaves de los dedos"
+      },
+      "handwriting": {
+        "title": "Ejercicios de Escritura",
+        "description": "Mejora tus habilidades de escritura"
+      }
+    },
+    "difficulty": {
+      "easy": "Fácil",
+      "medium": "Medio",
+      "hard": "Difícil"
+    }
+  },
+  "games": {
+    "title": "Juegos",
+    "description": "Juegos divertidos y atractivos para mejorar tus habilidades motoras",
+    "categories": {
+      "speed": "Juegos de Velocidad",
+      "accuracy": "Juegos de Precisión",
+      "coordination": "Juegos de Coordinación"
+    }
+  },
+  "progress": {
+    "title": "Progreso",
+    "description": "Sigue tu mejora a lo largo del tiempo",
+    "stats": {
+      "accuracy": "Precisión",
+      "speed": "Velocidad",
+      "consistency": "Consistencia"
+    },
+    "charts": {
+      "daily": "Progreso Diario",
+      "weekly": "Progreso Semanal",
+      "monthly": "Progreso Mensual"
+    }
+  },
+  "profile": {
+    "title": "Perfil",
+    "settings": "Configuración",
+    "notifications": "Notificaciones",
+    "theme": "Tema",
+    "language": "Idioma"
+  },
+  "languages": {
+    "english": "Inglés",
+    "traditionalChinese": "Chino Tradicional",
+    "simplifiedChinese": "Chino Simplificado",
+    "spanish": "Español"
+  },
+  "tabs": {
+    "home": "Inicio",
+    "training": "Entrenamiento",
+    "games": "Juegos",
+    "progress": "Progreso",
+    "profile": "Perfil"
+  }
+} 
