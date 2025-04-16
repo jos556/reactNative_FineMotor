@@ -1,43 +1,53 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, Alert } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, Alert, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 const Container = styled.View`
   flex: 1;
   background-color: ${props => props.theme.colors.background};
-  padding: ${props => props.theme.spacing.lg}px;
 `;
 
 const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: ${props => props.theme.spacing.lg}px;
+  padding: ${props => props.theme.spacing.lg}px;
+`;
+
+const Title = styled.Text`
+  font-size: 24px;
+  color: ${props => props.theme.colors.text};
+  text-align: center;
+  font-weight: bold;
+  padding: ${props => props.theme.spacing.md}px;
 `;
 
 const TimerText = styled.Text`
-  font-size: ${props => props.theme.typography.h2.fontSize}px;
+  font-size: 18px;
   color: ${props => props.theme.colors.text};
 `;
 
 const ScoreText = styled.Text`
-  font-size: ${props => props.theme.typography.h2.fontSize}px;
+  font-size: 18px;
   color: ${props => props.theme.colors.text};
 `;
 
 const GameArea = styled.View`
   flex: 1;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  background-color: ${props => props.theme.colors.background};
 `;
 
 const Dot = styled.TouchableOpacity<{ color: string }>`
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
   background-color: ${props => props.color};
   position: absolute;
+  justify-content: center;
+  align-items: center;
 `;
 
 const GameOverModal = styled.View`
@@ -46,42 +56,53 @@ const GameOverModal = styled.View`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
 `;
 
 const GameOverContent = styled.View`
-  background-color: ${props => props.theme.colors.background};
-  padding: ${props => props.theme.spacing.lg}px;
-  border-radius: ${props => props.theme.borderRadius.md}px;
+  background-color: ${props => props.theme.colors.surface};
+  padding: ${props => props.theme.spacing.xl}px;
+  border-radius: ${props => props.theme.borderRadius.lg}px;
   width: 80%;
-`;
-
-const GameOverTitle = styled.Text`
-  font-size: ${props => props.theme.typography.h1.fontSize}px;
-  color: ${props => props.theme.colors.text};
-  text-align: center;
-  margin-bottom: ${props => props.theme.spacing.md}px;
-`;
-
-const GameOverText = styled.Text`
-  font-size: ${props => props.theme.typography.body.fontSize}px;
-  color: ${props => props.theme.colors.text};
-  text-align: center;
-  margin-bottom: ${props => props.theme.spacing.md}px;
-`;
-
-const RestartButton = styled.TouchableOpacity`
-  background-color: ${props => props.theme.colors.primary};
-  padding: ${props => props.theme.spacing.md}px;
-  border-radius: ${props => props.theme.borderRadius.md}px;
   align-items: center;
 `;
 
-const RestartButtonText = styled.Text`
-  color: ${props => props.theme.colors.background};
-  font-size: ${props => props.theme.typography.body.fontSize}px;
+const GameOverTitle = styled.Text`
+  font-size: 24px;
+  color: ${props => props.theme.colors.text};
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: ${props => props.theme.spacing.lg}px;
+`;
+
+const GameOverText = styled.Text`
+  font-size: 18px;
+  color: ${props => props.theme.colors.text};
+  text-align: center;
+  margin-bottom: ${props => props.theme.spacing.md}px;
+`;
+
+const ButtonContainer = styled.View`
+  width: 100%;
+  margin-top: ${props => props.theme.spacing.lg}px;
+`;
+
+const Button = styled.TouchableOpacity<{ variant?: 'primary' | 'secondary' }>`
+  background-color: ${props => props.variant === 'secondary' ? props.theme.colors.surface : props.theme.colors.primary};
+  padding: ${props => props.theme.spacing.md}px;
+  border-radius: ${props => props.theme.borderRadius.md}px;
+  align-items: center;
+  margin-bottom: ${props => props.theme.spacing.md}px;
+  width: 100%;
+  border: ${props => props.variant === 'secondary' ? `2px solid ${props.theme.colors.primary}` : 'none'};
+`;
+
+const ButtonText = styled.Text<{ variant?: 'primary' | 'secondary' }>`
+  color: ${props => props.variant === 'secondary' ? props.theme.colors.primary : props.theme.colors.surface};
+  font-size: 16px;
+  font-weight: bold;
 `;
 
 type DotType = 'green' | 'red' | 'yellow';
@@ -96,6 +117,7 @@ interface Dot {
 
 const TapMasterScreen: React.FC = () => {
   const navigation = useNavigation();
+  const { t } = useTranslation();
   const [timeLeft, setTimeLeft] = useState(20);
   const [score, setScore] = useState(0);
   const [dots, setDots] = useState<Dot[]>([]);
@@ -104,15 +126,21 @@ const TapMasterScreen: React.FC = () => {
   const [averageReactionTime, setAverageReactionTime] = useState<number>(0);
   const [tapCount, setTapCount] = useState<number>(0);
 
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
+  const gameAreaHeight = windowHeight - 200; // Adjust for header and padding
+
   const generateDot = useCallback(() => {
     const types: DotType[] = ['green', 'red', 'yellow'];
     const type = types[Math.floor(Math.random() * types.length)];
-    const x = Math.random() * (300 - 50);
-    const y = Math.random() * (500 - 50);
-    const id = Date.now();
     
+    // Adjust the positioning to stay within visible bounds
+    const x = Math.random() * (windowWidth - 80); // Account for dot size
+    const y = Math.random() * (gameAreaHeight - 80); // Account for dot size
+    
+    const id = Date.now();
     setDots(prev => [...prev, { id, type, x, y, createdAt: Date.now() }]);
-  }, []);
+  }, [windowWidth, gameAreaHeight]);
 
   useEffect(() => {
     if (timeLeft > 0 && !gameOver) {
@@ -168,6 +196,7 @@ const TapMasterScreen: React.FC = () => {
 
   return (
     <Container>
+      <Title>{t('games.tap.title')}</Title>
       <Header>
         <TimerText>時間: {timeLeft}秒</TimerText>
         <ScoreText>分數: {score}</ScoreText>
@@ -190,12 +219,20 @@ const TapMasterScreen: React.FC = () => {
         {gameOver && (
           <GameOverModal>
             <GameOverContent>
-              <GameOverTitle>遊戲結束</GameOverTitle>
+              <GameOverTitle>遊戲結束！</GameOverTitle>
               <GameOverText>最終分數: {score}</GameOverText>
               <GameOverText>平均反應時間: {averageReactionTime.toFixed(2)}ms</GameOverText>
-              <RestartButton onPress={handleRestart}>
-                <RestartButtonText>再玩一次</RestartButtonText>
-              </RestartButton>
+              <ButtonContainer>
+                <Button onPress={handleRestart}>
+                  <ButtonText>再玩一次</ButtonText>
+                </Button>
+                <Button 
+                  variant="secondary" 
+                  onPress={() => navigation.navigate('GameSelection')}
+                >
+                  <ButtonText variant="secondary">返回遊戲選單</ButtonText>
+                </Button>
+              </ButtonContainer>
             </GameOverContent>
           </GameOverModal>
         )}

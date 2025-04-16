@@ -2,6 +2,16 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
+
+type RootStackParamList = {
+  TapMaster: undefined;
+  DrawingChallenge: undefined;
+  RhythmMaster: undefined;
+};
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const Container = styled.View`
   flex: 1;
@@ -44,111 +54,107 @@ const GameHeader = styled.View`
 `;
 
 const GameIcon = styled.Image`
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   margin-right: ${props => props.theme.spacing.md}px;
+  tint-color: ${props => props.theme.colors.primary};
 `;
 
 const GameTitle = styled.Text`
-  font-size: ${props => props.theme.typography.h2.fontSize}px;
+  font-size: 20px;
   color: ${props => props.theme.colors.text};
   font-weight: bold;
+  flex: 1;
 `;
 
 const GameDescription = styled.Text`
   font-size: ${props => props.theme.typography.body.fontSize}px;
   color: ${props => props.theme.colors.textSecondary};
-  margin-bottom: ${props => props.theme.spacing.md}px;
+  margin-bottom: ${props => props.theme.spacing.lg}px;
   line-height: 20px;
 `;
 
-const GameBenefits = styled.View`
-  background-color: ${props => props.theme.colors.primary}20;
-  padding: ${props => props.theme.spacing.md}px;
+const BenefitsContainer = styled.View`
+  background-color: ${props => props.theme.colors.primary}15;
+  padding: ${props => props.theme.spacing.lg}px;
   border-radius: ${props => props.theme.borderRadius.md}px;
 `;
 
 const BenefitsTitle = styled.Text`
-  font-size: ${props => props.theme.typography.body.fontSize}px;
+  font-size: 16px;
   color: ${props => props.theme.colors.primary};
   font-weight: bold;
-  margin-bottom: ${props => props.theme.spacing.xs}px;
+  margin-bottom: ${props => props.theme.spacing.md}px;
 `;
 
-const BenefitsList = styled.Text`
-  font-size: ${props => props.theme.typography.caption.fontSize}px;
+const BenefitItem = styled.Text`
+  font-size: ${props => props.theme.typography.body.fontSize}px;
   color: ${props => props.theme.colors.textSecondary};
-  line-height: 18px;
+  margin-bottom: ${props => props.theme.spacing.xs}px;
+  line-height: 20px;
 `;
 
 const GameSelectionScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp>();
+  const { t } = useTranslation();
 
   const games = [
     {
       id: 'tap',
-      title: 'Tap Master',
+      title: t('games.tap.title'),
       icon: require('../assets/tap.png'),
-      description: 'A fast-paced game that challenges your reaction time and finger coordination. Tap the dots as they appear, but be careful - some dots require different actions!',
-      benefits: [
-        'Improves reaction time and hand-eye coordination',
-        'Enhances fine motor control and finger dexterity',
-        'Trains selective attention and decision-making skills',
-        'Develops proprioception (body awareness) in fingers'
-      ]
+      description: t('games.tap.description'),
+      benefits: t('games.tap.benefits', { returnObjects: true }) as string[]
     },
     {
       id: 'drawing',
-      title: 'Drawing Challenge',
+      title: t('games.drawing.title'),
       icon: require('../assets/color.png'),
-      description: 'Test your precision and control by following patterns and creating shapes. This game helps develop steady hand movements and spatial awareness.',
-      benefits: [
-        'Enhances hand stability and control',
-        'Improves spatial awareness and coordination',
-        'Develops visual-motor integration',
-        'Strengthens proprioceptive feedback'
-      ]
+      description: t('games.drawing.description'),
+      benefits: t('games.drawing.benefits', { returnObjects: true }) as string[]
     },
     {
-      id: 'metronome',
-      title: 'Rhythm Master',
+      id: 'rhythm',
+      title: t('games.rhythm.title'),
       icon: require('../assets/metronome.png'),
-      description: 'Follow the rhythm and tap in sync with the beat. This game helps develop timing, coordination, and rhythmic awareness.',
-      benefits: [
-        'Improves timing and rhythm perception',
-        'Enhances bilateral coordination',
-        'Develops auditory-motor integration',
-        'Strengthens proprioceptive timing'
-      ]
+      description: t('games.rhythm.description'),
+      benefits: t('games.rhythm.benefits', { returnObjects: true }) as string[]
     }
   ];
+
+  const handleGamePress = (gameId: string) => {
+    switch (gameId) {
+      case 'tap':
+        navigation.navigate('TapMaster');
+        break;
+      case 'drawing':
+        navigation.navigate('DrawingChallenge');
+        break;
+      case 'rhythm':
+        navigation.navigate('RhythmMaster');
+        break;
+    }
+  };
 
   return (
     <Container>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Title>Fine Motor Training Games</Title>
-        <Description>
-          These games are designed to improve your fine motor control, hand-eye coordination, and proprioception through engaging and challenging exercises.
-        </Description>
+        <Title>{t('games.title')}</Title>
+        <Description>{t('games.description')}</Description>
 
         {games.map(game => (
-          <GameCard
-            key={game.id}
-            onPress={() => navigation.navigate(game.id === 'tap' ? 'TapMaster' : game.title)}
-          >
+          <GameCard key={game.id} onPress={() => handleGamePress(game.id)}>
             <GameHeader>
-              <GameIcon source={game.icon} />
+              <GameIcon source={game.icon} resizeMode="contain" />
               <GameTitle>{game.title}</GameTitle>
             </GameHeader>
             <GameDescription>{game.description}</GameDescription>
-            <GameBenefits>
-              <BenefitsTitle>Training Benefits:</BenefitsTitle>
-              <BenefitsList>
-                {game.benefits.map((benefit, index) => (
-                  `• ${benefit}\n`
-                ))}
-              </BenefitsList>
-            </GameBenefits>
+            <BenefitsContainer>
+              <BenefitsTitle>{t('games.benefits')}</BenefitsTitle>
+              {game.benefits.map((benefit: string, index: number) => (
+                <BenefitItem key={index}>• {benefit}</BenefitItem>
+              ))}
+            </BenefitsContainer>
           </GameCard>
         ))}
       </ScrollView>

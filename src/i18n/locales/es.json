@@ -32,12 +32,38 @@
     }
   },
   "games": {
-    "title": "Juegos",
-    "description": "Juegos divertidos y atractivos para mejorar tus habilidades motoras",
-    "categories": {
-      "speed": "Juegos de Velocidad",
-      "accuracy": "Juegos de Precisión",
-      "coordination": "Juegos de Coordinación"
+    "title": "Juegos de Entrenamiento de Motricidad Fina",
+    "description": "Estos juegos están diseñados para mejorar tu control motor fino, coordinación mano-ojo y propiocepción a través de ejercicios divertidos y desafiantes.",
+    "benefits": "Beneficios del entrenamiento:",
+    "tap": {
+      "title": "Maestro del Toque",
+      "description": "Un juego de ritmo rápido que desafía tu tiempo de reacción y coordinación de dedos. Toca los puntos que aparecen, ¡pero ten cuidado - algunos puntos requieren acciones diferentes!",
+      "benefits": [
+        "Mejora el tiempo de reacción y la coordinación mano-ojo",
+        "Mejora el control motor fino y la flexibilidad de los dedos",
+        "Entrena la atención selectiva y la toma de decisiones",
+        "Desarrolla la propiocepción de los dedos (conciencia corporal)"
+      ]
+    },
+    "drawing": {
+      "title": "Desafío de Dibujo",
+      "description": "Pon a prueba tu precisión y control siguiendo patrones y creando formas. Este juego ayuda a desarrollar movimientos de mano estables y conciencia espacial.",
+      "benefits": [
+        "Mejora la estabilidad y el control de la mano",
+        "Mejora la conciencia espacial y la coordinación",
+        "Desarrolla la integración visomotora",
+        "Fortalece la retroalimentación propioceptiva"
+      ]
+    },
+    "rhythm": {
+      "title": "Maestro del Ritmo",
+      "description": "Sigue el ritmo y toca al compás. Este juego ayuda a desarrollar el sentido del tiempo, la coordinación y la conciencia rítmica.",
+      "benefits": [
+        "Mejora el sentido del tiempo y la percepción rítmica",
+        "Mejora la coordinación bilateral",
+        "Desarrolla la integración auditivo-motora",
+        "Fortalece el sentido del tiempo propioceptivo"
+      ]
     }
   },
   "progress": {

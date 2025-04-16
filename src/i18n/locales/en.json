@@ -32,12 +32,38 @@
     }
   },
   "games": {
-    "title": "Games",
-    "description": "Fun and engaging games to improve your motor skills",
-    "categories": {
-      "speed": "Speed Games",
-      "accuracy": "Accuracy Games",
-      "coordination": "Coordination Games"
+    "title": "Fine Motor Training Games",
+    "description": "These games are designed to improve your fine motor control, hand-eye coordination, and proprioception through engaging and challenging exercises.",
+    "benefits": "Training Benefits:",
+    "tap": {
+      "title": "Tap Master",
+      "description": "A fast-paced game that challenges your reaction time and finger coordination. Tap the dots as they appear, but be careful - some dots require different actions!",
+      "benefits": [
+        "Improves reaction time and hand-eye coordination",
+        "Enhances fine motor control and finger dexterity",
+        "Trains selective attention and decision-making skills",
+        "Develops proprioception (body awareness) in fingers"
+      ]
+    },
+    "drawing": {
+      "title": "Drawing Challenge",
+      "description": "Test your precision and control by following patterns and creating shapes. This game helps develop steady hand movements and spatial awareness.",
+      "benefits": [
+        "Enhances hand stability and control",
+        "Improves spatial awareness and coordination",
+        "Develops visual-motor integration",
+        "Strengthens proprioceptive feedback"
+      ]
+    },
+    "rhythm": {
+      "title": "Rhythm Master",
+      "description": "Follow the rhythm and tap in sync with the beat. This game helps develop timing, coordination, and rhythmic awareness.",
+      "benefits": [
+        "Improves timing and rhythm perception",
+        "Enhances bilateral coordination",
+        "Develops auditory-motor integration",
+        "Strengthens proprioceptive timing"
+      ]
     }
   },
   "progress": {
