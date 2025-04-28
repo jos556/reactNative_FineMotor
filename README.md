@@ -4,7 +4,7 @@ A React Native application designed to improve fine motor skills, hand-eye coord
 
 ## Features
 
-### 1. Multi-language Support
+### 1. Multi-language Support 
 - English
 - Traditional Chinese
 - Simplified Chinese
